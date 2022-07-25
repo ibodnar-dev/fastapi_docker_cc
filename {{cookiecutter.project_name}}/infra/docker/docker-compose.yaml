@@ -19,7 +19,7 @@ services:
     volumes:
       - ../../app:/code/app
     networks:
-      - "{{cookiecutter.project_name}}-network"
+      - {{cookiecutter.project_name}}-network
 
   db:
     image: postgres:14-alpine
@@ -30,8 +30,8 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - "{{cookiecutter.project_name}}-network"
+      - {{cookiecutter.project_name}}-network
 
 networks:
-  "{{cookiecutter.project_name}}-network":
+  {{cookiecutter.project_name}}-network:
     driver: bridge
