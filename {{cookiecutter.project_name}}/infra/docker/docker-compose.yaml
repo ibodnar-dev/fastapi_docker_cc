@@ -1,0 +1,37 @@
+version: "3.3"
+
+volumes:
+  app_db_data:
+
+
+services:
+  app:
+    image: '${DOCKER_IMAGE_APP}:latest'
+    container_name: app
+    env_file:
+      - .env
+    build:
+      context: ../../
+      dockerfile: infra/docker/app.dockerfile
+    ports:
+      - "80:80"
+      - "8888:8888"
+    volumes:
+      - ../../app:/code/app
+    networks:
+      - app-network
+
+  db:
+    image: postgres:14-alpine
+    volumes:
+      - app_db_data:/var/lib/postgresql/data/pgdata
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
