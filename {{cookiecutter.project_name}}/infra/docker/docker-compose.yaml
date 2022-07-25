@@ -9,7 +9,7 @@ services:
     image: '${DOCKER_IMAGE_APP}:latest'
     container_name: app
     env_file:
-      - .env
+      - docker_dev.env
     build:
       context: ../../
       dockerfile: infra/docker/app.dockerfile
@@ -19,19 +19,19 @@ services:
     volumes:
       - ../../app:/code/app
     networks:
-      - app-network
+      - "{{cookiecutter.project}}-network"
 
   db:
     image: postgres:14-alpine
     volumes:
       - app_db_data:/var/lib/postgresql/data/pgdata
     env_file:
-      - .env
+      - docker_dev.env
     ports:
       - "5432:5432"
     networks:
-      - app-network
+      - "{{cookiecutter.project}}-network"
 
 networks:
-  app-network:
+  "{{cookiecutter.project}}-network":
     driver: bridge
