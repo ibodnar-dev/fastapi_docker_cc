@@ -3,7 +3,7 @@ FROM python:3.10.5-slim
 WORKDIR /code
 
 # TODO manage prod case
-COPY ./infra/requirements/base.txt /code/base.txt
+COPY ./infra/requirements/prod.txt /code/prod.txt
 COPY ./infra/requirements/dev.txt /code/requirements.txt
 
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt && \
