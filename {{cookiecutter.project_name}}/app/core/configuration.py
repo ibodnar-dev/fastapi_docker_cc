@@ -24,7 +24,7 @@ class Settings(BaseSettings):
         )
 
     class Config:
-        env_file = 'core/dev.env'
+        env_file = 'app/core/dev.env'
 
 
 settings = Settings()
