@@ -1,4 +1,5 @@
 fastapi==0.78.0
 uvicorn==0.17.6
 SQLAlchemy== 1.4.39
+sqlalchemy-utils==0.38.3
 pydantic[email, dotenv]==1.9.1
