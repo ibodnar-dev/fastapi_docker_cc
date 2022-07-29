@@ -1,6 +1,10 @@
+from pathlib import Path
 from typing import Optional, Dict, Any
 
 from pydantic import BaseSettings, validator, PostgresDsn
+
+
+current_path = Path(__file__).parent.absolute()
 
 
 class Settings(BaseSettings):
@@ -24,7 +28,7 @@ class Settings(BaseSettings):
         )
 
     class Config:
-        env_file = 'app/core/dev.env'
+        env_file = f'{current_path}/dev.env'
 
 
 settings = Settings()
