@@ -8,7 +8,7 @@ build:
 	${dc} build
 
 up-build:
-	${dc} up --build
+	${dc} up --build --no-cache
 
 bash:
 	${dc} exec --workdir /code/app app bash
