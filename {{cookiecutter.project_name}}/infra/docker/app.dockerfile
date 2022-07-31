@@ -5,6 +5,7 @@ WORKDIR /code
 # TODO manage prod case
 COPY ./infra/requirements/prod.txt /code/prod.txt
 COPY ./infra/requirements/dev.txt /code/requirements.txt
+COPY ./infra/create_db.py /code/create_db.py
 
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt && \
     adduser --disabled-password --no-create-home app-user
