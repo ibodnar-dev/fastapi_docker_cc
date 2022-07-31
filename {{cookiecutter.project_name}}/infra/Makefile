@@ -12,3 +12,9 @@ up-build:
 
 bash:
 	${dc} exec --workdir /code/app app bash
+
+create-db:
+	${dc_run_command} "python create_db.py"
+
+alembic-migrate:
+	${dc_run_command} "cd app && alembic upgrade head"
