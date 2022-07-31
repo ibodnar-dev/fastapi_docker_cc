@@ -27,6 +27,24 @@ class Settings(BaseSettings):
             path=f"/{values.get('POSTGRES_DB') or ''}",
         )
 
+    def get_db_uri(self, values_to_update: dict[str, Any] | None = None) -> str:
+        """
+        Returns a str with the database URI. Any of the URI components can be modified
+        before returning it by passing the component name and its new value to values_to_update
+        in a dict.
+        Example: get_db_uri(values_to_update={'POSTGRES_HOST': '172.24.0.1'})
+        """
+        if values_to_update is None:
+            values_to_update = {}
+
+        return PostgresDsn.build(
+            scheme='postgresql',
+            user=values_to_update.get('POSTGRES_USER', self.POSTGRES_USER),
+            password=values_to_update.get('POSTGRES_PASSWORD', self.POSTGRES_PASSWORD),
+            host=values_to_update.get('POSTGRES_HOST', self.POSTGRES_HOST),
+            path=f"/{values_to_update.get('POSTGRES_DB', self.POSTGRES_DB) or ''}"
+        )
+
     class Config:
         env_file = f'{current_path}/dev.env'
 
