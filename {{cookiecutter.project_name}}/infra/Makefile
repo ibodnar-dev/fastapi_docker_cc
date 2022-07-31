@@ -16,5 +16,8 @@ bash:
 create-db:
 	${dc_run_command} "python create_db.py"
 
+alembic-revision-auto:
+	${dc_run_command} "cd app && alembic revision --autogenerate -m '${message}'"
+
 alembic-migrate:
 	${dc_run_command} "cd app && alembic upgrade head"
