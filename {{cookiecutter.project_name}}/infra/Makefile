@@ -5,10 +5,10 @@ run:
 	${dc} up
 
 build:
-	${dc} build
+	${dc} build --no-cache
 
 up-build:
-	${dc} up --build --no-cache
+	${dc} up --build
 
 bash:
 	${dc} exec --workdir /code/app app bash
