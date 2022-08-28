@@ -4,5 +4,5 @@ from sqlalchemy.orm import sessionmaker
 from .configuration import settings
 
 
-engine = create_engine(url=settings.POSTGRES_URI)
+engine = create_engine(url=settings.SQLALCHEMY_DATABASE_URI)
 default_session = sessionmaker(bind=engine)
